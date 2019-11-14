@@ -61,9 +61,19 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
 
 
+#memory error occur when using GPR in dataset #9
 
-data=pd.read_csv('RegressionData/1. Wine Quality/winequality-red.csv', header=0)
-#data=pd.read_csv('2.Default of credit card clients/default of credit card clients.csv', header=0)
+#data=pd.read_csv('RegressionData/1. Wine Quality/winequality-red.csv', header=0)
+#data=pd.read_csv('RegressionData/2. Communities and Crime/communities.data.csv', header=None, na_values='?')
+#data=pd.read_csv('RegressionData/3. QSAR aquatic toxicity/qsar_aquatic_toxicity.csv', header=None, na_values='?')
+data=pd.read_csv('RegressionData/4. Parkinson Speech/train.csv', header=0)
+#data=pd.read_csv('RegressionData/1. Wine Quality/winequality-red.csv', header=0)
+#data=pd.read_csv('RegressionData/1. Wine Quality/winequality-red.csv', header=0)
+#data=pd.read_csv('RegressionData/1. Wine Quality/winequality-red.csv', header=0)
+#data=pd.read_csv('RegressionData/8. Concrete Compressive Strength/Concrete_Data.csv', header=0)
+#data=pd.read_csv('RegressionData/9. SGEMM GPU kernel performance/sgemm_product.csv', header=0)
+#data=pd.read_csv('RegressionData/1. Wine Quality/winequality-red.csv', header=0)
+
 data=np.array(data)
 
 X,y=data[:,0:-2], data[:, -1]
@@ -77,7 +87,7 @@ X_train, X_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y
 #print(X_train)
 
 
-pca = PCA(n_components=10)
+pca = PCA(n_components=5)
 
 pca.fit(X_train)
 pcaX = pca.transform(X_train)
@@ -177,7 +187,7 @@ def AdaBoost(X_train,y_train,X_test,y_test):
 #knn odd num
 a1=AdaBoost(traindata,trainlabel,testdata,testlabel)
 
-a2=GPR(traindata,trainlabel,testdata,testlabel)
+#a2=GPR(traindata,trainlabel,testdata,testlabel)
 
 #a3=xgboost(traindata,trainlabel,testdata,testlabel)
 
@@ -202,7 +212,7 @@ print(a1)
 
 print("GPR")
 print("[mean_squared_error,mean_absolute_error,r2_score]")
-print(a2)
+#print(a2)
 
 #print("xgboost")
 #print("[accuracy,precision,recall,f1,auc]")
